@@ -34,7 +34,7 @@ export default function GaleriaUnhas() {
               alt={img.alt}
               width={800}
               height={800}
-              className="h-64 w-full object-cover sm:h-72"
+              className="h-64 w-full object-cover sm:h-72 transition-transform duration-300 hover:scale-105"
               loading={idx === 0 ? "eager" : "lazy"}
               priority={idx === 0}
             />

@@ -33,7 +33,6 @@ export default function Servicos() {
             <p className="text-lg font-semibold">{s.title}</p>
             <p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">{s.desc}</p>
             <div className="mt-5 flex items-center justify-between">
-              <span className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">{s.price}</span>
               <a
                 href="#contato"
                 className="rounded-full border border-black/10 px-4 py-2 text-xs font-semibold transition hover:bg-black/5 dark:border-white/10 dark:text-zinc-50 dark:hover:bg-white/5"
