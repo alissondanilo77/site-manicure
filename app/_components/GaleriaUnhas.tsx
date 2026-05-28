@@ -1,4 +1,5 @@
 import Image from "next/image";
+import GaleriaCarousel from "./GaleriaCarousel";
 
 const imagens = [
   { src: "/unha1.jpg", alt: "Unhas finalizadas 1" },
@@ -23,24 +24,26 @@ export default function GaleriaUnhas() {
         </a>
       </div>
 
-      <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        {imagens.map((img, idx) => (
-          <figure
-            key={img.src}
-            className="relative overflow-hidden rounded-3xl border border-black/5 bg-white shadow-sm dark:border-white/10 dark:bg-black"
-          >
-            <Image
-              src={img.src}
-              alt={img.alt}
-              width={800}
-              height={800}
-              className="h-64 w-full object-cover sm:h-72 transition-transform duration-300 hover:scale-105"
-              loading={idx === 0 ? "eager" : "lazy"}
-              priority={idx === 0}
-            />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/25 via-black/0 to-transparent" />
-          </figure>
-        ))}
+      <div className="mt-8">
+        {/* 4 fotos lado a lado (responsivo) */}
+        <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
+          {imagens.map((img, idx) => (
+            <figure
+              key={img.src}
+              className="relative overflow-hidden rounded-3xl border border-black/5 bg-white shadow-sm dark:border-white/10 dark:bg-black"
+            >
+              <Image
+                src={img.src}
+                alt={img.alt}
+                width={400}
+                height={400}
+                className="h-28 w-full object-cover transition-transform duration-300 hover:scale-105 sm:h-36"
+                loading={idx === 0 ? "eager" : "lazy"}
+                priority={idx === 0}
+              />
+            </figure>
+          ))}
+        </div>
       </div>
     </section>
   );
