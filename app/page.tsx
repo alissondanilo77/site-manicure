@@ -5,6 +5,9 @@ import Depoimentos from "./_components/Depoimentos";
 import Agendamento from "./_components/Agendamento";
 import GaleriaUnhas from "./_components/GaleriaUnhas";
 
+
+
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-amber-50 text-zinc-900 font-sans dark:bg-black dark:text-zinc-50">
@@ -58,7 +61,8 @@ export default function Home() {
 
             <a
               href="#contato"
-              className="rounded-full bg-zinc-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-zinc-800 dark:bg-zinc-100 dark:text-black"
+              className="rounded-full ls
+              bg-zinc-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-zinc-800 dark:bg-zinc-100 dark:text-black"
             >
               Agendar
             </a>
@@ -167,7 +171,9 @@ export default function Home() {
       <GaleriaUnhas />
 
       {/* Pricing */}
+
       <Precos />
+
 
 
       {/* Testimonials */}

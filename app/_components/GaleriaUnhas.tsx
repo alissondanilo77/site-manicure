@@ -1,51 +1,64 @@
-import Image from "next/image";
-import GaleriaCarousel from "./GaleriaCarousel";
+'use client'
 
-const imagens = [
-  { src: "/unha1.jpg", alt: "Unhas finalizadas 1" },
-  { src: "/unha2.jpg", alt: "Unhas finalizadas 2" },
-  { src: "/unha3.jpg", alt: "Unhas finalizadas 3" },
-  { src: "/unha4.jpg", alt: "Unhas finalizadas 4" },
-];
+
+
+type Slide = {
+  src: string
+  alt: string
+}
+
+const imagens: Slide[] = [
+  { src: '/unha1.jpg', alt: 'Unhas decoradas' },
+  { src: '/unha2.jpg', alt: 'Esmaltação' },
+  { src: '/unha3.jpg', alt: 'Manicure' },
+  { src: '/unha4.jpg', alt: 'Alongamento' },
+]
 
 export default function GaleriaUnhas() {
   return (
-    <section id="galeria" className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <p className="text-sm font-semibold text-zinc-500 dark:text-zinc-400">Galeria</p>
-          <h2 className="mt-2 text-3xl font-semibold tracking-tight">Unhas que inspiram</h2>
-        </div>
-        <a
-          href="#contato"
-          className="text-sm font-semibold text-zinc-900 hover:underline dark:text-zinc-50"
-        >
-          Quero esse resultado
-        </a>
-      </div>
-
+    <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
       <div className="mt-8">
-        {/* 4 fotos lado a lado (responsivo) */}
-        <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          {imagens.map((img, idx) => (
-            <figure
+        {/* Galeria estática (sem carrossel), com cards lado a lado e zoom sutil ao clicar */}
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+          {imagens.map((img) => (
+            <button
               key={img.src}
-              className="relative overflow-hidden rounded-3xl border border-black/5 bg-white shadow-sm dark:border-white/10 dark:bg-black"
+              type="button"
+              aria-label={img.alt}
+              className="group relative overflow-hidden rounded-2xl border border-black/5 bg-white p-0 text-left shadow-sm dark:border-white/10 dark:bg-black"
+              onClick={() => {
+                // animação sutil via CSS (mantém simples e sem modal)
+                const el = document.getElementById(`galeria-zoom-${img.src}`);
+                el?.classList.add('galeria-zoom-on');
+                window.setTimeout(() => {
+                  el?.classList.remove('galeria-zoom-on');
+                }, 260);
+              }}
             >
-              <Image
-                src={img.src}
-                alt={img.alt}
-                width={400}
-                height={400}
-                className="h-28 w-full object-cover transition-transform duration-300 hover:scale-105 sm:h-36"
-                loading={idx === 0 ? "eager" : "lazy"}
-                priority={idx === 0}
-              />
-            </figure>
+              <div className="relative aspect-[4/3] w-full">
+                <style jsx>{`
+                  .galeria-zoom-on { transform: scale(1.035); }
+                `}</style>
+                <div
+                  id={`galeria-zoom-${img.src}`}
+                  className="absolute inset-0 transition-transform duration-300 ease-out will-change-transform group-hover:scale-[1.03]"
+                >
+                  <div className="relative h-full w-full">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={img.src}
+                      alt={img.alt}
+                      loading="lazy"
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                </div>
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/15 via-black/0 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              </div>
+            </button>
           ))}
         </div>
       </div>
     </section>
-  );
+  )
 }
-

@@ -24,3 +24,27 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Swiper navigation (cores do tema) */
+.galeria-unhas-swiper .swiper-button-prev,
+.galeria-unhas-swiper .swiper-button-next {
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  background: rgba(16, 185, 129, 0.75);
+  color: #ffffff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(6px);
+}
+
+.galeria-unhas-swiper .swiper-button-prev::after,
+.galeria-unhas-swiper .swiper-button-next::after {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.galeria-unhas-swiper .swiper-button-prev:hover,
+.galeria-unhas-swiper .swiper-button-next:hover {
+  background: rgba(16, 185, 129, 0.95);
+}
+
